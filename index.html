@@ -191,6 +191,14 @@
                 transform: rotate(360deg);
             }
         }
+
+        /* Message Styling */
+        .upload-message {
+            font-size: 1.2em;
+            color: #28a745;
+            margin-top: 10px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -205,8 +213,11 @@
                 <span>📸</span>
                 Click or Drag to Upload Your Image
             </label>
-            <input id="file-upload" type="file" name="file" accept="image/*" required>
+            <input id="file-upload" type="file" name="file" accept="image/*" required onchange="showUploadMessage()">
         </div>
+
+        <!-- Display message after file is uploaded -->
+        <div id="upload-message" class="upload-message" style="display:none;">Photo uploaded</div>
 
         <div class="genre-section">
             <label for="genre"><strong>Pick Your Story Type:</strong></label>
@@ -233,25 +244,23 @@
         <div class="story">
             <p>{{ story }}</p>
         </div>
-
-          </div>
+    </div>
     {% endif %}
 
     {% if audio_path %}
-<div class="audio-section">
-    <h3>Listen to Your Story 🎧</h3>
-    <audio controls>
-        <source src="{{ url_for('static', filename='audio/' + audio_path) }}" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
-    <p>
-        <a href="{{ url_for('static', filename='audio/' + audio_path) }}" download>
-            📥 Download Audio
-        </a>
-    </p>
-</div>
-{% endif %}
-
+    <div class="audio-section">
+        <h3>Listen to Your Story 🎧</h3>
+        <audio controls>
+            <source src="{{ url_for('static', filename='audio/' + audio_path) }}" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <p>
+            <a href="{{ url_for('static', filename='audio/' + audio_path) }}" download>
+                📥 Download Audio
+            </a>
+        </p>
+    </div>
+    {% endif %}
 </div>
 
 <!-- Loader -->
@@ -263,6 +272,11 @@
     // Show loader when the form is submitted
     function showLoader() {
         document.getElementById('loader-wrapper').style.display = 'flex';
+    }
+
+    // Show the upload message when a file is selected
+    function showUploadMessage() {
+        document.getElementById('upload-message').style.display = 'block';
     }
 </script>
 
