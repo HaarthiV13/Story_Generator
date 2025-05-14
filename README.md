@@ -99,10 +99,6 @@ Contributions are welcome! Please follow these steps to contribute:
    git push origin feature/YourFeature
    ```
 
-
-## 📝 License
-
-This project is licensed under the [MIT License](LICENSE).
 ## 📧 Contact
 
 For any inquiries or feedback, please reach out to [Haarthi Vallabhaneni](haarthivallabhaneni13@gmail.com).
